@@ -20,7 +20,9 @@
     {#each $messages as message}
       <div class="message">
         {#if message.from}
-          <strong class="from">{message.from} says:</strong>
+          <strong class="from">
+            <span>{message.from}</span> says:
+          </strong>
           {message.message}
         {/if}
       </div>
@@ -36,6 +38,10 @@
     display: flex;
     flex-flow: column;
     gap: 1rem;
+  }
+
+  span {
+    color: var(--accent-color);
   }
 
   .messages {

@@ -23,13 +23,30 @@
     e.preventDefault()
     room.disconnect()
   }
+
+  const copyShareLink = (e) => {
+    e.preventDefault()
+    const url = $page.url
+    navigator.clipboard.writeText(url)
+  }
+
+  const clone = (e) => {
+    e.preventDefault()
+    window.open($page.url)
+  }
 </script>
 
 <!-- MARKUP -->
 {#if $isConnected === true}
   <form class="room-selector" on:submit={disconnect}>
-    <button on:click={disconnect}>
+    <button class="disconnect" on:click={disconnect}>
       Disconnect
+    </button>
+    <button on:click={clone}>
+      Clone
+    </button>
+    <button on:click={copyShareLink}>
+      Share
     </button>
   </form>
 {:else}
@@ -79,7 +96,12 @@
     border-radius: var(--border-radius);
     background-color: var(--accent-color);
     color: white;
-    flex: 1;
     font-size: 0.6em;
+    flex: 0;
+  }
+
+  button.disconnect {
+    background-color: var(--foreground-25);
+    flex: 1;
   }
 </style>
