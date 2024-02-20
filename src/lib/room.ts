@@ -34,7 +34,8 @@ class Room {
     ws.addEventListener('message', (e) => {
       console.log('received message', e.data)
       const data = JSON.parse(e.data)
-      messages.update(m => [...m, data])
+
+
 
       let rID = data?.details?.roomID
 
@@ -44,11 +45,12 @@ class Room {
         if (!pageRoomID) {
           goto(`/room/${rID}`, { replaceState: false })
         }
+        messages.update(m => [`connected to room ${rID}`])
         this.roomID = rID
         roomID.set(rID)
       } else {
         console.log('processing message', data)
-        // messages.update(m => [...m, data])
+        messages.update(m => [...m, data])
       }
     })
 

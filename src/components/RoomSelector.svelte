@@ -55,6 +55,7 @@
       type="text"
       bind:value={$roomID}
       placeholder="room ID (optional)"
+      autofocus
       />
     <button on:click={connect}>
       Connect

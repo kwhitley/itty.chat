@@ -24,6 +24,8 @@
             <span>{message.from}</span> says:
           </strong>
           {message.message}
+        {:else}
+          <small>{message}</small>
         {/if}
       </div>
     {/each}
@@ -42,6 +44,10 @@
 
   span {
     color: var(--accent-color);
+  }
+
+  small {
+    color: var(--foreground-50);
   }
 
   .messages {
