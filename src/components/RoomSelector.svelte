@@ -1,7 +1,9 @@
 <script lang="ts">
   import { goto } from '$app/navigation'
-  import { roomID } from '../store'
+  import { roomID } from '$lib/stores'
   import { page } from '$app/stores'
+  import { room } from '../lib/room'
+  import { isConnected } from '../lib/room'
 
   export let data
 
@@ -9,22 +11,40 @@
 
   const connect = (e) => {
     e.preventDefault()
-    goto(`/room/${$roomID}`, { replaceState: false })
+
+    $roomID && goto(`/room/${$roomID}`)
+
+    if (!$roomID) {
+      room.connect()
+    }
+  }
+
+  const disconnect = (e) => {
+    e.preventDefault()
+    room.disconnect()
   }
 </script>
 
 <!-- MARKUP -->
-{$page.params.roomID}
-<form class="room-selector" on:submit={connect}>
-  <input
-    type="text"
-    bind:value={$roomID}
-    placeholder="room ID (optional)"
-    />
-  <button on:click={connect}>
-    Connect
-  </button>
-</form>
+{#if $isConnected === true}
+  <form class="room-selector" on:submit={disconnect}>
+    <button on:click={disconnect}>
+      Disconnect
+    </button>
+  </form>
+{:else}
+  <form class="room-selector" on:submit={connect}>
+    <input
+      type="text"
+      bind:value={$roomID}
+      placeholder="room ID (optional)"
+      />
+    <button on:click={connect}>
+      Connect
+    </button>
+  </form>
+{/if}
+
 
 <!-- STYLES -->
 <style lang="scss">

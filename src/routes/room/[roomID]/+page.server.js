@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit'
-import { roomID } from '../../../store'
+import { roomID } from '$lib/stores'
 
 export function load({ params }) {
   roomID.set(params.roomID)
