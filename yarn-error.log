@@ -1,0 +1,76 @@
+Arguments: 
+  /Users/kevinwhitley/.nvm/versions/node/v20.10.0/bin/node /usr/local/Cellar/yarn/1.22.19/libexec/bin/yarn.js
+
+PATH: 
+  /Users/kevinwhitley/.nvm/versions/node/v20.10.0/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/usr/local/git/bin:/usr/local/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  20.10.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/sveltejs: Not found
+      at params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.19/libexec/lib/cli.js:66145:18)
+      at self.callback (/usr/local/Cellar/yarn/1.22.19/libexec/lib/cli.js:140890:22)
+      at Request.emit (node:events:514:28)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.19/libexec/lib/cli.js:141862:10)
+      at Request.emit (node:events:514:28)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.19/libexec/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:628:28)
+      at IncomingMessage.emit (node:events:526:35)
+      at endReadableNT (node:internal/streams/readable:1589:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+npm manifest: 
+  {
+    "name": "ittysockets.chat",
+    "version": "0.8.0",
+    "private": true,
+    "scripts": {
+      "dev": "vite dev",
+      "build": "vite build",
+      "prepreview": "yarn build",
+      "preview": "vite preview",
+      "check": "svelte-kit sync && svelte-check",
+      "check:watch": "svelte-kit sync && svelte-check --watch",
+      "lint": "prettier --check . && eslint .",
+      "format": "prettier --write .",
+      "release": "release --push --nopublish --patch"
+    },
+    "devDependencies": {
+      "@sveltejs/kit": "^3.50.1",
+      "@sveltejs/vite-plugin-svelte": "^3.0.0",
+      "@typescript-eslint/eslint-plugin": "^5.43.0",
+      "@typescript-eslint/parser": "^5.43.0",
+      "eslint": "^8.27.0",
+      "eslint-config-prettier": "^8.5.0",
+      "eslint-plugin-svelte3": "^4.0.0",
+      "prettier": "^2.7.1",
+      "prettier-plugin-svelte": "^2.8.0",
+      "sass": "^1.55.0",
+      "svelte-check": "^2.9.2",
+      "svelte-preprocess": "^4.10.7",
+      "tslib": "^2.4.1",
+      "typescript": "^4.8.4",
+      "vite": "^5.0.3",
+      "yarn-release": "^1.10.5"
+    },
+    "type": "module",
+    "dependencies": {
+      "sveltejs": "^4.0.0",
+      "itty-fetcher": "^0.7.5",
+      "itty-time": "^0.2.0",
+      "supergeneric": "^2.1.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
