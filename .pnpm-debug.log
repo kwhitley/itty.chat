@@ -1,0 +1,113 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "ittysockets.chat",
+      "version": "0.8.0",
+      "private": true,
+      "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "prepreview": "yarn build",
+        "preview": "vite preview",
+        "check": "svelte-kit sync && svelte-check",
+        "check:watch": "svelte-kit sync && svelte-check --watch",
+        "lint": "prettier --check . && eslint .",
+        "format": "prettier --write .",
+        "release": "release --push --nopublish --patch"
+      },
+      "devDependencies": {
+        "@sveltejs/adapter-auto": "next",
+        "@sveltejs/kit": "next",
+        "@typescript-eslint/eslint-plugin": "^7.0.2",
+        "@typescript-eslint/parser": "^7.0.2",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-svelte3": "^4.0.0",
+        "mdsvex": "^0.11.0",
+        "prettier": "^3.2.5",
+        "prettier-plugin-svelte": "^3.2.1",
+        "sass": "^1.71.1",
+        "svelte": "^4.2.11",
+        "svelte-check": "^3.6.4",
+        "svelte-preprocess": "^5.1.3",
+        "tslib": "^2.6.2",
+        "typescript": "^5.3.3",
+        "vite": "^5.1.4",
+        "yarn-release": "^1.10.6"
+      },
+      "type": "module",
+      "dependencies": {
+        "autosize": "^6.0.1",
+        "codemirror": "^6.0.1",
+        "itty-fetcher": "^0.9.4",
+        "itty-time": "^0.2.2",
+        "supergeneric": "^2.1.0",
+        "svelte-navlink-action": "^0.2.0",
+        "svelte-range-slider-pips": "^2.3.1",
+        "svelte-tooltip": "^1.2.0",
+        "weighted": "^1.0.0"
+      }
+    },
+    "prefix": "/Users/kevinwhitley/dev/kwhitley/ittysockets.chat"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/Users/kevinwhitley/.pnpm-store/v3",
+    "virtualStoreDir": "/Users/kevinwhitley/dev/kwhitley/ittysockets.chat/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/Users/kevinwhitley/dev/kwhitley/ittysockets.chat",
+    "stage": "resolution_started"
+  },
+  "4 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prettier-plugin-svelte/3.2.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "prettier-plugin-svelte",
+      "rawSpec": "^3.2.1"
+    }
+  },
+  "5 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier-plugin-svelte/3.2.1",
+    "requester": "/Users/kevinwhitley/dev/kwhitley/ittysockets.chat",
+    "status": "resolved"
+  },
+  "6 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-svelte3/4.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "eslint-plugin-svelte3",
+      "rawSpec": "^4.0.0"
+    }
+  },
+  "7 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-svelte3/4.0.0",
+    "requester": "/Users/kevinwhitley/dev/kwhitley/ittysockets.chat",
+    "status": "resolved"
+  },
+  "8 warn pnpm:install-check": {
+    "message": "Unsupported engine for registry.npmjs.org/eslint/8.56.0: wanted: {\"node\":\"^12.22.0 || ^14.17.0 || >=16.0.0\"} (current: {\"node\":\"v15.4.0\",\"pnpm\":\"6.32.2\"})",
+    "prefix": "/Users/kevinwhitley/dev/kwhitley/ittysockets.chat"
+  },
+  "9 error pnpm": {
+    "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
+    "packageId": "registry.npmjs.org/eslint/8.56.0",
+    "wanted": {
+      "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+    },
+    "current": {
+      "node": "v15.4.0",
+      "pnpm": "6.32.2"
+    },
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "Unsupported engine for registry.npmjs.org/eslint/8.56.0: wanted: {\"node\":\"^12.22.0 || ^14.17.0 || >=16.0.0\"} (current: {\"node\":\"v15.4.0\",\"pnpm\":\"6.32.2\"})",
+      "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
+      "stack": "pnpm: Unsupported engine for registry.npmjs.org/eslint/8.56.0: wanted: {\"node\":\"^12.22.0 || ^14.17.0 || >=16.0.0\"} (current: {\"node\":\"v15.4.0\",\"pnpm\":\"6.32.2\"})\n    at checkEngine (/Users/kevinwhitley/.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.2/node_modules/pnpm/dist/pnpm.cjs:41280:16)\n    at checkPackage (/Users/kevinwhitley/.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.2/node_modules/pnpm/dist/pnpm.cjs:43376:104)\n    at packageIsInstallable (/Users/kevinwhitley/.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.2/node_modules/pnpm/dist/pnpm.cjs:43346:20)\n    at resolveAndFetch (/Users/kevinwhitley/.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.2/node_modules/pnpm/dist/pnpm.cjs:74507:117)\n    at processTicksAndRejections (node:internal/process/task_queues:93:5)\n    at async resolveDependency (/Users/kevinwhitley/.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.2/node_modules/pnpm/dist/pnpm.cjs:116088:23)\n    at async resolveDependenciesOfDependency (/Users/kevinwhitley/.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.2/node_modules/pnpm/dist/pnpm.cjs:115923:39)\n    at async Promise.all (index 4)\n    at async resolveDependencies (/Users/kevinwhitley/.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.2/node_modules/pnpm/dist/pnpm.cjs:115890:29)\n    at async /Users/kevinwhitley/.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.2/node_modules/pnpm/dist/pnpm.cjs:116409:47"
+    }
+  }
+}
