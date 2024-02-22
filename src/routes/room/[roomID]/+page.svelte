@@ -21,7 +21,7 @@
       <div class="message">
         {#if message.from}
           <strong class="from">
-            <span>{message.from.alias ?? message.from.id}</span> says:
+            <span>{message.from.alias || message.from.id}</span> says:
           </strong>
           {#if (typeof message.message === 'string')}
             {message.message}
