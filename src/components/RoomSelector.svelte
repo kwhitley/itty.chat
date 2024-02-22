@@ -4,6 +4,7 @@
   import { page } from '$app/stores'
   import { room } from '../lib/room'
   import { isConnected } from '../lib/room'
+  import Settings from './Settings.svelte'
 
   export let data
 
@@ -48,6 +49,7 @@
     <button on:click={copyShareLink}>
       Share
     </button>
+    <Settings />
   </form>
 {:else}
   <form class="room-selector" on:submit={connect}>
@@ -60,6 +62,7 @@
     <button on:click={connect}>
       Connect
     </button>
+    <Settings />
   </form>
 {/if}
 
@@ -80,6 +83,7 @@
     border: none;
     outline: 1px solid var(--foreground-50);
     font-size: 0.6em;
+    flex: 1;
 
     &::placeholder {
       color: var(--foreground-25);

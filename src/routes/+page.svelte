@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <!-- MARKUP -->
 <main>
   <h1>welcome to <span class="accent">ittysockets.io</span>, the chat version.</h1>

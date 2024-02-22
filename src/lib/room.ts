@@ -1,4 +1,4 @@
-import { roomID } from '$lib/stores'
+import { roomID, alias } from '$lib/stores'
 import { goto } from '$app/navigation'
 import { page } from '$app/stores'
 import { get, writable } from 'svelte/store'
@@ -26,7 +26,8 @@ class Room {
     console.log('connecting to room', id)
     this.disconnect()
     this.roomID = id
-    const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + '?echo=true'
+    // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
+    const url = [`wss://ittysockets.io/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
     console.log(`connecting to ${url}`)
     const ws = this.ws = new WebSocket(url)
     console.log('this.ws is', this.ws)

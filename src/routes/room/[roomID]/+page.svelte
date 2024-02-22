@@ -23,7 +23,13 @@
           <strong class="from">
             <span>{message.from.alias ?? message.from.id}</span> says:
           </strong>
-          {message.message}
+          {#if (typeof message.message === 'string')}
+            {message.message}
+          {:else}
+            <pre>
+              {JSON.stringify(message.message, null, 2)}
+            </pre>
+          {/if}
         {:else}
           <small>{message}</small>
         {/if}
