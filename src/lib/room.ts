@@ -26,8 +26,11 @@ class Room {
     console.log('connecting to room', id)
     this.disconnect()
     this.roomID = id
+    let useAlias = get(alias)
     // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
-    const url = [`wss://ittysockets.io/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
+    let url = [`wss://ittysockets.io/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
+
+    if (useAlias) url += '&alias=' + useAlias
     console.log(`connecting to ${url}`)
     const ws = this.ws = new WebSocket(url)
     console.log('this.ws is', this.ws)
@@ -36,7 +39,7 @@ class Room {
       console.log('received message', e.data)
       const data = JSON.parse(e.data)
 
-      let rID = data?.message?.roomID
+      let rID = data?.message.roomID
 
       if (rID) {
         console.log('connected to room', rID)
