@@ -35,9 +35,7 @@ class Room {
       console.log('received message', e.data)
       const data = JSON.parse(e.data)
 
-
-
-      let rID = data?.details?.roomID
+      let rID = data?.message?.roomID
 
       if (rID) {
         console.log('connected to room', rID)
