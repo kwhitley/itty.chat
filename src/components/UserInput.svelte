@@ -1,13 +1,19 @@
 <script lang="ts">
-  import { room } from '../../../lib/room'
+  import { room } from '../lib/room'
+  import { refocus } from '../lib/stores'
 
   let value
+  let input
 
   const send = (e) => {
     e.preventDefault()
-    console.log('sending value', value)
     room.send(value)
     value = ''
+  }
+
+  $: if ($refocus) {
+    input?.focus()
+    $refocus = false
   }
 </script>
 
@@ -16,6 +22,7 @@
   <input
     type="text"
     bind:value
+    bind:this={input}
     autofocus
     />
   <button on:click={send} disabled={!value}>

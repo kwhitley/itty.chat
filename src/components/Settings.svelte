@@ -1,18 +1,23 @@
 <script>
-  import { alias } from '../lib/stores'
+  import { alias, refocus } from '../lib/stores'
   import { room } from '../lib/room'
   let isOpen = false
   let input
+  let currentAlias
 
   const open = () => {
     isOpen = true
+    currentAlias = $alias
     input?.select()
   }
 
   const close = (e) => {
     e.preventDefault()
-    room.isConnected && room.send(`$alias ${$alias}`)
+    if (room.isConnected && currentAlias !== $alias) {
+      room.send(`$alias ${$alias}`)
+    }
     isOpen = false
+    $refocus = true
   }
 </script>
 

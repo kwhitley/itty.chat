@@ -1,8 +1,8 @@
-<script lang="ts">
+<script>
   import { page } from '$app/stores'
   import { roomID } from '../../../lib/stores'
   import { room, messages } from '../../../lib/room'
-  import UserInput from './UserInput.svelte'
+  import UserInput from '../../../components/UserInput.svelte'
   export let data
   let pageRoomID = ''
 
