@@ -28,7 +28,7 @@ class Room {
     this.roomID = id
     let useAlias = get(alias)
     // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
-    let url = [`wss://ittysockets.io/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
+    let url = [`wss://v0.ittysockets.io/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
 
     if (useAlias) url += '&alias=' + useAlias
     console.log(`connecting to ${url}`)
