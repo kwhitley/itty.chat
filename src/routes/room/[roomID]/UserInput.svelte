@@ -16,6 +16,7 @@
   <input
     type="text"
     bind:value
+    autofocus
     />
   <button on:click={send} disabled={!value}>
     Send

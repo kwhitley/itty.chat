@@ -1,9 +1,19 @@
 <script>
   import { alias } from '../lib/stores'
+  import { room } from '../lib/room'
   let isOpen = false
+  let input
 
-  const open = () => isOpen = true
-  const close = () => isOpen = false
+  const open = () => {
+    isOpen = true
+    input?.select()
+  }
+
+  const close = (e) => {
+    e.preventDefault()
+    room.isConnected && room.send(`$alias ${$alias}`)
+    isOpen = false
+  }
 </script>
 
 <!-- MARKUP -->
@@ -16,10 +26,15 @@
 <main class:isOpen>
   <h2>Settings</h2>
 
-  <form>
+  <form on:submit={close}>
     <label>
       Display Name
-      <input type="text" bind:value={$alias} />
+      <input
+        type="text"
+        bind:value={$alias}
+        autofocus
+        bind:this={input}
+        />
     </label>
   </form>
 </main>

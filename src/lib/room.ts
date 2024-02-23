@@ -24,6 +24,7 @@ class Room {
     console.log('pageRoomID is', pageRoomID)
 
     console.log('connecting to room', id)
+    messages.set([])
     this.disconnect()
     this.roomID = id
     let useAlias = get(alias)
@@ -57,17 +58,21 @@ class Room {
     })
 
     ws.addEventListener('open', () => isConnected.set(true))
+    ws.addEventListener('close', () => this.disconnect(true))
   }
 
-  disconnect() {
-    if (this.isConnected) {
+  disconnect(force = false) {
+    if (this.isConnected || force) {
       console.log('closing room', this.roomID)
-      this.ws.close()
+      try {
+        this.ws.close()
+      } catch (err) {
+        console.log('already disconnected.')
+      }
       isConnected.set(false)
       this.roomID = undefined
       roomID.set(undefined)
-      messages.set([])
-      goto('/')
+      !force && goto('/')
     } else {
       console.log('room already closed')
     }
