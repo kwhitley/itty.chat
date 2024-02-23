@@ -68,10 +68,15 @@
 <!-- STYLES -->
 <style lang="scss">
   .room-selector {
-    height: 2.7rem;
     display: flex;
+    flex-flow: row wrap;
+    justify-content: stretch;
     gap: 0.5rem;
     font-size: 2rem;
+
+    & > * {
+      height: 2.5rem;
+    }
   }
 
   input {
@@ -82,6 +87,11 @@
     outline: 1px solid var(--foreground-50);
     font-size: 0.6em;
     flex: 1;
+
+    @media (max-width: 25rem) {
+      flex: 1 100%;
+      width: 100%;
+    }
 
     &::placeholder {
       color: var(--foreground-25);
@@ -101,10 +111,19 @@
     color: white;
     font-size: 0.6em;
     flex: 0;
+
+    @media (max-width: 25rem) {
+      flex: 1;
+    }
   }
 
   button.disconnect {
     background-color: var(--foreground-25);
     flex: 1;
+
+    @media (max-width: 25rem) {
+      flex: 1 100%;
+      width: 100%;
+    }
   }
 </style>

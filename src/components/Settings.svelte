@@ -47,7 +47,7 @@
 <!-- STYLES -->
 <style lang="scss">
   a {
-    width: 3rem;
+    width: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;

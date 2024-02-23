@@ -23,6 +23,10 @@
     height: 100vh;
     gap: 1rem;
 
+    @media (max-width: 25em) {
+      padding: 1rem;
+    }
+
     #room {
       flex: 1;
     }
