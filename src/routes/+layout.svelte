@@ -1,5 +1,6 @@
 <script>
   import '~/styles/app.scss'
+  import '~/constants.ts'
   import RoomSelector from '~/components/RoomSelector.svelte'
 </script>
 

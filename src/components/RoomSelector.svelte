@@ -6,8 +6,6 @@
   import { isConnected } from '../lib/room'
   import Settings from './Settings.svelte'
 
-  export let data
-
   $: $page.params.roomID && roomID.set($page.params.roomID)
 
   const connect = (e) => {
