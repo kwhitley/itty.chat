@@ -22,27 +22,35 @@
 </script>
 
 <!-- MARKUP -->
-{#if isOpen}
-  <a on:click={close}>✕</a>
-{:else}
-  <a on:click={open}>⚙️</a>
-{/if}
 
 <main class:isOpen>
-  <h2>Settings</h2>
+  {#if isOpen}
 
-  <form on:submit={close}>
-    <label>
-      Display Name
-      <input
-        type="text"
-        bind:value={$alias}
-        autofocus
-        bind:this={input}
-        />
-    </label>
-  </form>
+  {:else}
+    <a on:click={open}>⚙️</a>
+  {/if}
+
+  <article class:isOpen>
+    <h2>
+      Settings
+      <a class="close" on:click={close}>✕</a>
+    </h2>
+
+    <form on:submit={close}>
+      <label>
+        Display Name
+        <input
+          type="text"
+          bind:value={$alias}
+          autofocus
+          bind:this={input}
+          />
+      </label>
+    </form>
+  </article>
 </main>
+
+
 
 <!-- STYLES -->
 <style lang="scss">
@@ -52,6 +60,7 @@
     justify-content: center;
     align-items: center;
     transition: all 0.1s ease;
+    z-index: 1;
 
     &:hover {
       text-decoration: none;
@@ -59,22 +68,36 @@
     }
   }
 
-  main {
-    position: fixed;
-    top: 100%;
+  article {
+    display: none;
+  }
+
+  main.isOpen {
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #eee;
-    // background-color: pink;
-    // opacity: 0;
-    transition: top 0.2s ease;
-    padding: 2rem;
+    position: fixed;
     z-index: 1;
+    background-color: #eee;
+    display: flex;
+    flex-flow: column;
+    padding: 2rem;
 
+    article {
+      display: block;
+    }
+  }
+
+  h2 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  article {
     &.isOpen {
       opacity: 1;
-      top: 5rem;
+      top: 0;
     }
   }
 </style>

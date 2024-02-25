@@ -2,6 +2,7 @@ import { roomID, alias } from '$lib/stores'
 import { goto } from '$app/navigation'
 import { page } from '$app/stores'
 import { get, writable } from 'svelte/store'
+import { WS_PATH } from '../constants'
 
 export const isConnected = writable(false)
 export const messages = writable([])
@@ -14,7 +15,7 @@ class Room {
     return Boolean(this.ws) && this.ws?.readyState === this.ws?.OPEN
   }
 
-  connect(id) {
+  connect(id?: string) {
     if (id && id === this.roomID) {
       console.log('already connected to', roomID)
       return false
@@ -29,7 +30,7 @@ class Room {
     this.roomID = id
     let useAlias = get(alias)
     // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
-    let url = [`wss://v0.ittysockets.io/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
+    let url = [`${WS_PATH}/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
 
     if (useAlias) url += '&alias=' + useAlias
     console.log(`connecting to ${url}`)

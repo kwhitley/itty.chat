@@ -37,6 +37,7 @@
     display: flex;
     gap: 0.5rem;
     font-size: 2rem;
+    justify-self: flex-end;
   }
 
   input {

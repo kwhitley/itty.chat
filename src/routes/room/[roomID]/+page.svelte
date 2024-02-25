@@ -43,6 +43,7 @@
 <style lang="scss">
   main {
     height: 100%;
+    flex: 1;
     display: flex;
     flex-flow: column;
     gap: 1rem;

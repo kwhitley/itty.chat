@@ -20,7 +20,7 @@
     display: flex;
     flex-flow: column;
     background-color: #eee;
-    height: 100vh;
+    min-height: 100vh;
     gap: 1rem;
 
     @media (max-width: 25em) {
@@ -29,6 +29,12 @@
 
     #room {
       flex: 1;
+      display: flex;
+      flex-flow: column;
+    }
+
+    @supports (height: env(safe-area-inset-bottom)) {
+      min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
     }
   }
 </style>
