@@ -30,7 +30,7 @@ class Room {
     this.roomID = id
     let useAlias = get(alias)
     // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
-    let url = [`${WS_PATH}/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
+    let url = [`${WS_PATH}/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&duration=3seconds`
 
     if (useAlias) url += '&alias=' + useAlias
     console.log(`connecting to ${url}`)
@@ -41,7 +41,7 @@ class Room {
       console.log('received message', e.data)
       const data = JSON.parse(e.data)
 
-      let rID = data?.message.roomID
+      let rID = data?.roomID
 
       if (rID) {
         console.log('connected to room', rID)
@@ -65,6 +65,8 @@ class Room {
   disconnect(force = false) {
     if (this.isConnected || force) {
       console.log('closing room', this.roomID)
+      messages.update(m => [...m, `disconnected from room ${this.roomID}`])
+
       try {
         this.ws.close()
       } catch (err) {
