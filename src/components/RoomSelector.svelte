@@ -1,9 +1,8 @@
 <script lang="ts">
   import { goto } from '$app/navigation'
-  import { roomID } from '$lib/stores'
   import { page } from '$app/stores'
-  import { room } from '../lib/room'
-  import { isConnected } from '../lib/room'
+  import { roomID } from '$lib/stores'
+  import { isConnected, room } from '../lib/room'
   import Settings from './Settings.svelte'
 
   $: $page.params.roomID && roomID.set($page.params.roomID)

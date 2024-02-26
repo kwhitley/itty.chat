@@ -5,6 +5,7 @@ import { get, writable } from 'svelte/store'
 import { WS_PATH } from '../constants'
 
 export const isConnected = writable(false)
+export const isConnecting = writable(false)
 export const messages = writable([])
 
 class Room {
@@ -16,11 +17,18 @@ class Room {
     return Boolean(this.ws) && this.ws?.readyState === this.ws?.OPEN
   }
 
-  connect(id?: string) {
+  async connect(id?: string) {
+    console.log('connecting...')
     if (id && id === this.roomID) {
       console.log('already connected to', roomID)
       return false
     }
+
+    isConnecting.set(true)
+
+    // await new Promise((resolve) => {
+    //   setTimeout(resolve, 1000)
+    // })
 
     const pageRoomID = get(page).params?.roomID
     console.log('pageRoomID is', pageRoomID)
@@ -75,7 +83,10 @@ class Room {
       }
     })
 
-    ws.addEventListener('open', () => isConnected.set(true))
+    ws.addEventListener('open', () => {
+      isConnected.set(true)
+      isConnecting.set(false)
+    })
     ws.addEventListener('close', () => this.disconnect(true))
   }
 
@@ -90,6 +101,7 @@ class Room {
         console.log('already disconnected.')
       }
       isConnected.set(false)
+      isConnecting.set(false)
       this.roomID = undefined
       this.selfID = undefined
       roomID.set(undefined)

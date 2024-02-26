@@ -1,8 +1,9 @@
 <script>
   import { page } from '$app/stores'
   import { roomID, selfID, unreadMessages } from '../../../lib/stores'
-  import { room, messages } from '../../../lib/room'
+  import { room, messages, isConnecting } from '../../../lib/room'
   import UserInput from '../../../components/UserInput.svelte'
+  import { fade } from 'svelte/transition'
   export let data
 
   let pageRoomID = ''
@@ -17,6 +18,8 @@
     console.log('roomID has changed to', $roomID)
     room.connect(pageRoomID)
   }
+
+  $: console.log('connecting?', $isConnecting)
 
   $: {
     if ($messages.length) {
@@ -72,6 +75,21 @@
     gap: 1rem;
     overflow: hidden;
     padding: 1px;
+  }
+
+  main.overlay {
+    position: fixed;
+    z-index: 1;
+    // background-color: rgba(225,225,225,0.9);
+    background-color: #eee;
+    opacity: 0.95;
+    color: var(--foreground-50);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
   }
 
   span {

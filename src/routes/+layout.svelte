@@ -2,6 +2,8 @@
   import '~/styles/app.scss'
   import '~/constants.ts'
   import RoomSelector from '~/components/RoomSelector.svelte'
+  import OverlayMessage from '../components/OverlayMessage.svelte'
+	import { isConnecting } from '../lib/room'
 </script>
 
 <main id="layout">
@@ -12,6 +14,10 @@
     <slot />
   </div>
 </main>
+
+{#if $isConnecting}
+  <OverlayMessage message="connecting..." />
+{/if}
 
 <!-- STYLES -->
 <style lang="scss">
