@@ -27,11 +27,17 @@
             {message.message}
           {:else}
             <pre>
-              {JSON.stringify(message.message, null, 2)}
+              {JSON.stringify(message.message ?? message, null, 2)}
             </pre>
           {/if}
         {:else}
-          <small>{message}</small>
+          {#if (typeof message === 'string')}
+            <small>{message}</small>
+          {:else}
+            <pre>
+              {JSON.stringify(message, null, 2)}
+            </pre>
+          {/if}
         {/if}
       </div>
     {/each}
