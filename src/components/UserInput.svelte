@@ -38,6 +38,7 @@
     gap: 0.5rem;
     font-size: 2rem;
     justify-self: flex-end;
+    min-height: 2.5rem;
   }
 
   input {

@@ -22,6 +22,8 @@
     background-color: #eee;
     min-height: 100vh;
     gap: 1rem;
+    max-height: 100vh;
+    overflow: hidden;
 
     @media (max-width: 25em) {
       padding: var(--app-padding-mobile);
@@ -31,6 +33,7 @@
       flex: 1;
       display: flex;
       flex-flow: column;
+      overflow: hidden;
     }
 
     @supports (height: env(safe-area-inset-bottom)) {

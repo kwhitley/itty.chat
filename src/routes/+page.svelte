@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>Welcome to itty.chat</title>
+</svelte:head>
+
 <!-- MARKUP -->
 <main>
   <section>

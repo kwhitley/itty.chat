@@ -1,4 +1,4 @@
-import { roomID, alias } from '$lib/stores'
+import { roomID, alias, unreadMessages } from './stores'
 import { goto } from '$app/navigation'
 import { page } from '$app/stores'
 import { get, writable } from 'svelte/store'
@@ -38,6 +38,14 @@ class Room {
     console.log('this.ws is', this.ws)
 
     ws.addEventListener('message', (e) => {
+
+      console.log('has focus?', document.hasFocus())
+      if (!document.hasFocus()) {
+        unreadMessages.update(v => v + 1)
+      } else {
+        unreadMessages.set(0)
+      }
+
       console.log('received message', e.data)
       const data = JSON.parse(e.data)
 

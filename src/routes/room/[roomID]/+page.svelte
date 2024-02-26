@@ -1,10 +1,15 @@
 <script>
   import { page } from '$app/stores'
-  import { roomID } from '../../../lib/stores'
+  import { roomID, unreadMessages } from '../../../lib/stores'
   import { room, messages } from '../../../lib/room'
   import UserInput from '../../../components/UserInput.svelte'
   export let data
+
   let pageRoomID = ''
+  let messageArea = undefined
+
+  $: pageTitleBase = `Chatting in room ${$roomID}`
+  $: pageTitle = $unreadMessages ? `(${$unreadMessages}) ` + pageTitleBase : pageTitleBase
 
   $: if (typeof window !== 'undefined' && pageRoomID !== $page.params.roomID) {
     pageRoomID = $page.params.roomID
@@ -12,11 +17,23 @@
     console.log('roomID has changed to', $roomID)
     room.connect(pageRoomID)
   }
+
+  $: {
+    if ($messages.length) {
+      window.messageArea = messageArea
+      setTimeout(() => messageArea.scrollTo(0, messageArea.scrollHeight), 0)
+    }
+  }
 </script>
+
+<!-- HEAD -->
+<svelte:head>
+  <title>{pageTitle}</title>
+</svelte:head>
 
 <!-- MARKUP -->
 <main>
-  <section class="messages">
+  <section class="messages" bind:this={messageArea}>
     {#each $messages as message}
       <div class="message">
         {#if message.from}
@@ -53,6 +70,8 @@
     display: flex;
     flex-flow: column;
     gap: 1rem;
+    overflow: hidden;
+    padding: 1px;
   }
 
   span {
