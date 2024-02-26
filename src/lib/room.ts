@@ -29,7 +29,7 @@ class Room {
     this.roomID = id
     let useAlias = get(alias)
     // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
-    let url = [`${WS_PATH}/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
+    let url = [`${WS_PATH}/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&duration=3seconds`
 
     if (useAlias) url += '&alias=' + useAlias
     console.log(`connecting to ${url}`)
@@ -78,26 +78,26 @@ class Room {
   }
 
   disconnect(force = false) {
-    console.log('running room.disconnect()')
+    console.log('running room.disconnect() force=', force)
     if (this.isConnected) {
-      console.log('closing room', this.roomID)
-      messages.update(m => [...m, `disconnected from room ${this.roomID}`])
-
       try {
         this.ws.close()
       } catch (err) {
         console.log('already disconnected.')
       }
-      isConnected.set(false)
-      isConnecting.set(false)
-      this.roomID = undefined
-      this.selfID = undefined
-      roomID.set(undefined)
-      selfID.set(undefined)
-      !force && goto('/')
-    } else {
-      console.log('room already closed')
     }
+
+    console.log('closing room', this.roomID)
+    messages.update(m => [...m, `disconnected from room ${this.roomID}`])
+
+    isConnected.set(false)
+    isConnecting.set(false)
+    this.roomID = undefined
+    this.selfID = undefined
+    roomID.set(undefined)
+    selfID.set(undefined)
+    // !force && goto('/')
+    goto('/')
   }
 
   send(message: any) {
