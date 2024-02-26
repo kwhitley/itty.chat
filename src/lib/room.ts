@@ -64,9 +64,11 @@ class Room {
         selfID.set(data?.id)
         roomID.set(rID)
       } else {
-        data.details = {
-          date: Date.now(),
-          fromSelf: data?.from?.id === this.selfID,
+        if (typeof data === 'object') {
+          data.details = {
+            date: Date.now(),
+            fromSelf: data?.from?.id === this.selfID,
+          }
         }
         console.log('processing message', data)
         messages.update(m => [...m, data])
