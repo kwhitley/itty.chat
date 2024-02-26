@@ -82,7 +82,11 @@
     background-color: #eee;
     display: flex;
     flex-flow: column;
-    padding: 2rem;
+    padding: var(--app-padding-desktop);
+
+    @media (max-width: 25em) {
+      padding: var(--app-padding-mobile);
+    }
 
     article {
       display: block;

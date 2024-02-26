@@ -16,7 +16,7 @@
 <!-- STYLES -->
 <style lang="scss">
   #layout {
-    padding: 2rem;
+    padding: var(--app-padding-desktop);
     display: flex;
     flex-flow: column;
     background-color: #eee;
@@ -24,7 +24,7 @@
     gap: 1rem;
 
     @media (max-width: 25em) {
-      padding: 1rem;
+      padding: var(--app-padding-mobile);
     }
 
     #room {
