@@ -15,11 +15,8 @@
   $: if (typeof window !== 'undefined' && pageRoomID !== $page.params.roomID) {
     pageRoomID = $page.params.roomID
     roomID.set($page.params.roomID)
-    console.log('roomID has changed to', $roomID)
     room.connect(pageRoomID)
   }
-
-  $: console.log('connecting?', $isConnecting)
 
   $: {
     if ($messages.length) {

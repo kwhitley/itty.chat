@@ -18,24 +18,14 @@ class Room {
   }
 
   async connect(id?: string) {
-    console.log('connecting...')
-    if (id && id === this.roomID) {
-      console.log('already connected to', roomID)
-      return false
-    }
+    window.room = this
+    // short circuit if already connected
+    if (id && id === this.roomID) return false
 
     isConnecting.set(true)
-
-    // await new Promise((resolve) => {
-    //   setTimeout(resolve, 1000)
-    // })
-
     const pageRoomID = get(page).params?.roomID
-    console.log('pageRoomID is', pageRoomID)
-
-    console.log('connecting to room', id)
     messages.set([])
-    this.disconnect()
+    // this.disconnect()
     this.roomID = id
     let useAlias = get(alias)
     // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
@@ -44,11 +34,8 @@ class Room {
     if (useAlias) url += '&alias=' + useAlias
     console.log(`connecting to ${url}`)
     const ws = this.ws = new WebSocket(url)
-    console.log('this.ws is', this.ws)
 
     ws.addEventListener('message', (e) => {
-
-      console.log('has focus?', document.hasFocus())
       if (!document.hasFocus()) {
         unreadMessages.update(v => v + 1)
       } else {
@@ -91,7 +78,8 @@ class Room {
   }
 
   disconnect(force = false) {
-    if (this.isConnected || force) {
+    console.log('running room.disconnect()')
+    if (this.isConnected) {
       console.log('closing room', this.roomID)
       messages.update(m => [...m, `disconnected from room ${this.roomID}`])
 

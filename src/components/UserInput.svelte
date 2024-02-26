@@ -1,6 +1,7 @@
 <script lang="ts">
   import { room } from '../lib/room'
   import { refocus } from '../lib/stores'
+  import { isConnected } from '../lib/room'
 
   let value
   let input
@@ -23,6 +24,7 @@
     type="text"
     bind:value
     bind:this={input}
+    disabled={!$isConnected}
     autofocus
     />
   <button on:click={send} disabled={!value}>
