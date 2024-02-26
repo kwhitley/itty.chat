@@ -1,4 +1,4 @@
-import { roomID, alias, unreadMessages } from './stores'
+import { roomID, alias, selfID, unreadMessages } from './stores'
 import { goto } from '$app/navigation'
 import { page } from '$app/stores'
 import { get, writable } from 'svelte/store'
@@ -10,6 +10,7 @@ export const messages = writable([])
 class Room {
   ws: WebSocket
   roomID: string | undefined
+  selfID: string | undefined
 
   get isConnected() {
     return Boolean(this.ws) && this.ws?.readyState === this.ws?.OPEN
@@ -59,8 +60,14 @@ class Room {
         }
         messages.update(m => [`connected to room ${rID}`])
         this.roomID = rID
+        this.selfID = data?.id
+        selfID.set(data?.id)
         roomID.set(rID)
       } else {
+        data.details = {
+          date: Date.now(),
+          fromSelf: data?.from?.id === this.selfID,
+        }
         console.log('processing message', data)
         messages.update(m => [...m, data])
       }
@@ -82,7 +89,9 @@ class Room {
       }
       isConnected.set(false)
       this.roomID = undefined
+      this.selfID = undefined
       roomID.set(undefined)
+      selfID.set(undefined)
       !force && goto('/')
     } else {
       console.log('room already closed')

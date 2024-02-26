@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores'
-  import { roomID, unreadMessages } from '../../../lib/stores'
+  import { roomID, selfID, unreadMessages } from '../../../lib/stores'
   import { room, messages } from '../../../lib/room'
   import UserInput from '../../../components/UserInput.svelte'
   export let data
@@ -35,10 +35,10 @@
 <main>
   <section class="messages" bind:this={messageArea}>
     {#each $messages as message}
-      <div class="message">
+      <div class="message" class:self={message.details?.fromSelf}>
         {#if message.from}
           <strong class="from">
-            <span>{message.from.alias || message.from.id}</span> says:
+            <span>{message.from.alias || message.from.id}</span>
           </strong>
           {#if (typeof message.message === 'string')}
             {message.message}
@@ -75,7 +75,8 @@
   }
 
   span {
-    color: var(--accent-color);
+    // color: var(--accent-color);
+    color: #000;
   }
 
   small {
@@ -87,6 +88,23 @@
     overflow: scroll;
     display: flex;
     flex-flow: column;
-    gap: 0.5rem;
+    gap: 0.7rem;
+  }
+
+  .message {
+    color: #666;
+    font-weight: 100;
+  }
+
+  .from {
+    font-weight: 600;
+
+    &::after {
+      content: ': ';
+    }
+  }
+
+  .self, .self * {
+    color: var(--accent-color);
   }
 </style>
