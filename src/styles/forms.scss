@@ -20,11 +20,17 @@ input, textarea, button {
   border: var(--input-border-thickness) solid var(--foreground-25);
   width: 100%;
   color: var(--foreground-color);
+  // overflow: hidden;
+  // text-overflow: ellipsis;
 
   &:focus {
     outline: 2px solid var(--input-focus-color);
     outline-offset: calc(-1 * var(--input-border-thickness));
   }
+}
+
+input[type=text] {
+  min-width: 10rem;
 }
 
 input[type=range], input[type=checkbox] {
@@ -81,6 +87,8 @@ button {
   color: var(--button-foreground-primary);
   border-color: var(--foreground-10);
   border-radius: calc(0.6 * var(--button-border-radius));
+  padding: 0.8rem;
+  line-height: 0;
 
   &.secondary {
     background-color: var(--button-background-secondary);

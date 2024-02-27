@@ -1,8 +1,8 @@
-import { roomID, alias, selfID, unreadMessages } from './stores'
 import { goto } from '$app/navigation'
 import { page } from '$app/stores'
 import { get, writable } from 'svelte/store'
 import { WS_PATH } from '../constants'
+import { alias, roomID, selfID, unreadMessages } from './stores'
 
 export const isConnected = writable(false)
 export const isConnecting = writable(false)
@@ -25,10 +25,8 @@ class Room {
     isConnecting.set(true)
     const pageRoomID = get(page).params?.roomID
     messages.set([])
-    // this.disconnect()
     this.roomID = id
     let useAlias = get(alias)
-    // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
     let url = [`${WS_PATH}/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
 
     if (useAlias) url += '&alias=' + useAlias

@@ -107,12 +107,13 @@
 
   button {
     height: 100%;
-    padding: 0 0.5rem;
+    // padding: 0 0.5rem;
     border: none;
     border-radius: var(--border-radius);
     background-color: var(--accent-color);
     color: white;
     font-size: 0.6em;
+    flex: 0 1 auto;
     flex: 0;
     white-space: nowrap;
 
@@ -146,11 +147,14 @@
       // width: 100%;
     }
 
-    @media (max-width: 15rem) {
-      flex: 1;
-      padding: 0;
-      // flex: 1 100%;
-      // width: 100%;
-    }
+    // @media (max-width: 15rem) {
+    //   flex: 1;
+    //   // flex: 1 100%;
+    //   // width: 100%;
+    // }
+  }
+
+  .connected button.disconnect {
+    // flex: 1 100%;
   }
 </style>
