@@ -80,7 +80,7 @@
     bottom: 0;
     position: fixed;
     z-index: 999;
-    background-color: #eee;
+    background-color: var(--background-color);
     display: flex;
     flex-flow: column;
     padding: var(--app-padding-desktop);

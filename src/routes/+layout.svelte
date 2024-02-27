@@ -25,7 +25,6 @@
     padding: var(--app-padding-desktop);
     display: flex;
     flex-flow: column;
-    background-color: #eee;
     min-height: 100vh;
     gap: 1rem;
     max-height: 100vh;

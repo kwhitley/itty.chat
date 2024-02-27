@@ -27,12 +27,12 @@
   --default-gap: 1.5rem;
 
   // LIGHT MODE COLORS
-  --lightmode-foreground-hue: 50, 50, 50;
-  --lightmode-background-hue: 255, 255, 255;
+  --lightmode-foreground-hue: 0, 0%, 20%;
+  --lightmode-background-hue: 0, 0%, 93%;
 
   // DARK MODE COLORS
-  --darkmode-foreground-hue: 225, 225, 225;
-  --darkmode-background-hue: 15, 15, 15;
+  --darkmode-foreground-hue: 0, 0%, 93%;
+  --darkmode-background-hue: 0, 0%, 12%;
 
   // MISC SETTINGS
   --ol-counter-size: 2rem;
@@ -44,22 +44,22 @@
   --foreground-hue: var(--lightmode-foreground-hue);
   --background-hue: var(--lightmode-background-hue);
 
-  --foreground-color: rgb(var(--foreground-hue));
-  --background-color: rgb(var(--background-hue));
+  --foreground-color: hsl(var(--foreground-hue));
+  --background-color: hsl(var(--background-hue));
 
-  --foreground-5: rgba(var(--foreground-hue), 0.05);
-  --foreground-10: rgba(var(--foreground-hue), 0.10);
-  --foreground-25: rgba(var(--foreground-hue), 0.25);
-  --foreground-50: rgba(var(--foreground-hue), 0.50);
-  --foreground-75: rgba(var(--foreground-hue), 0.75);
-  --foreground-95: rgba(var(--foreground-hue), 0.95);
+  --foreground-5: hsla(var(--foreground-hue), 0.05);
+  --foreground-10: hsla(var(--foreground-hue), 0.10);
+  --foreground-25: hsla(var(--foreground-hue), 0.25);
+  --foreground-50: hsla(var(--foreground-hue), 0.50);
+  --foreground-75: hsla(var(--foreground-hue), 0.75);
+  --foreground-95: hsla(var(--foreground-hue), 0.95);
 
-  --background-5: rgba(var(--background-hue), 0.05);
-  --background-10: rgba(var(--background-hue), 0.1);
-  --background-25: rgba(var(--background-hue), 0.25);
-  --background-50: rgba(var(--background-hue), 0.50);
-  --background-75: rgba(var(--background-hue), 0.75);
-  --background-95: rgba(var(--background-hue), 0.95);
+  --background-5: hsla(var(--background-hue), 0.05);
+  --background-10: hsla(var(--background-hue), 0.1);
+  --background-25: hsla(var(--background-hue), 0.25);
+  --background-50: hsla(var(--background-hue), 0.50);
+  --background-75: hsla(var(--background-hue), 0.75);
+  --background-95: hsla(var(--background-hue), 0.95);
 
 
   @media (prefers-color-scheme: dark) {
@@ -84,6 +84,7 @@ html {
 
 body {
   color: var(--foreground-color);
+  background-color: var(--background-color);
 }
 
 ul, ol {

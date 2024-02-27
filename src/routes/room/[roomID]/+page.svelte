@@ -78,7 +78,7 @@
     position: fixed;
     z-index: 1;
     // background-color: rgba(225,225,225,0.9);
-    background-color: #eee;
+    // background-color: var(--background-color);
     opacity: 0.95;
     color: var(--foreground-50);
     top: 0;

@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #eee;
+    background-color: var(--background-color);
     opacity: 0.98;
   }
 </style>
