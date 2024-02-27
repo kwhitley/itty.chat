@@ -23,6 +23,7 @@
 <Modal
   bind:open={isOpen}
   on:open={() => { currentAlias = $alias }}
+  title="Settings"
   openLink="⚙️"
   >
 

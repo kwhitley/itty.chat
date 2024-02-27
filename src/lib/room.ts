@@ -29,7 +29,7 @@ class Room {
     this.roomID = id
     let useAlias = get(alias)
     // const url = [`ws://localhost:8787/v0/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&alias=${get(alias)}`
-    let url = [`${WS_PATH}/rooms/connect`, id].filter(v => v).join('/') + `?echo=true&duration=3seconds`
+    let url = [`${WS_PATH}/rooms/connect`, id].filter(v => v).join('/') + `?echo=true`
 
     if (useAlias) url += '&alias=' + useAlias
     console.log(`connecting to ${url}`)
@@ -52,6 +52,8 @@ class Room {
 
         if (!pageRoomID) {
           goto(`/room/${rID}`, { replaceState: false })
+        } else if (pageRoomID !== rID) {
+          goto(`/room/${rID}`, { replaceState: true })
         }
         messages.update(m => [`connected to room ${rID}`])
         this.roomID = rID
@@ -96,8 +98,8 @@ class Room {
     this.selfID = undefined
     roomID.set(undefined)
     selfID.set(undefined)
-    // !force && goto('/')
-    goto('/')
+    !force && goto('/')
+    // goto('/')
   }
 
   send(message: any) {

@@ -1,14 +1,20 @@
+<script>
+	import { isConnecting, isConnected } from '../lib/room'
+
+</script>
 <svelte:head>
   <title>Welcome to itty.chat</title>
 </svelte:head>
 
 <!-- MARKUP -->
-<main>
-  <section>
-    <h1>welcome to <span class="accent">itty.chat</span></h1>
-    <h2>powered by <a href="https://ittysockets.com">ittysockets.io</a></h2>
-  </section>
-</main>
+{#if !$isConnecting && !$isConnected}
+  <main>
+    <section>
+      <h1>welcome to <span class="accent">itty.chat</span></h1>
+      <h2>powered by <a href="https://ittysockets.com">ittysockets.io</a></h2>
+    </section>
+  </main>
+{/if}
 
 <!-- STYLES -->
 <style lang="scss">

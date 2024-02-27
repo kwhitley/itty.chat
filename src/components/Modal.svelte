@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte'
+  import { fly } from 'svelte/transition'
 
   export let title
   export let open = false
@@ -19,7 +20,7 @@
 <!-- MARKUP -->
 
 {#if open}
-  <main>
+  <main transition:fly={{ x: 100, duration: 100 }}>
     <section class="header">
       <slot name="title">
         {#if title}
@@ -32,7 +33,7 @@
   </main>
 {/if}
 
-<a class="hidden" on:click={handleOpen}>
+<a on:click={handleOpen}>
   <slot name="link">
     {#if openLink}
       {openLink}

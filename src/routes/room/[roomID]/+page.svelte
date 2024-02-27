@@ -1,7 +1,7 @@
 <script>
   import { page } from '$app/stores'
   import { roomID, selfID, unreadMessages } from '../../../lib/stores'
-  import { room, messages, isConnecting } from '../../../lib/room'
+  import { room, messages, isConnecting, isConnected } from '../../../lib/room'
   import UserInput from '../../../components/UserInput.svelte'
   import { fade } from 'svelte/transition'
   export let data
@@ -14,7 +14,7 @@
 
   $: if (typeof window !== 'undefined' && pageRoomID !== $page.params.roomID) {
     pageRoomID = $page.params.roomID
-    roomID.set($page.params.roomID)
+    // roomID.set($page.params.roomID)
     room.connect(pageRoomID)
   }
 

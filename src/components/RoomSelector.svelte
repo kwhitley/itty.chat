@@ -5,14 +5,14 @@
   import { isConnected, room } from '../lib/room'
   import Settings from './Settings.svelte'
 
-  $: $page.params.roomID && roomID.set($page.params.roomID)
+  // $: $page.params.roomID && roomID.set($page.params.roomID)
 
   const connect = (e) => {
     e.preventDefault()
 
-    $roomID && goto(`/room/${$roomID}`)
-
-    if (!$roomID) {
+    if ($roomID) {
+      goto(`/room/${$roomID}`)
+    } else {
       room.connect()
     }
   }
@@ -36,32 +36,36 @@
 
 <!-- MARKUP -->
 {#if $isConnected === true}
-  <form class="room-selector" on:submit={disconnect}>
-    <button class="disconnect" on:click={disconnect}>
-      Disconnect
-    </button>
+  <form class="room-selector" on:submit={disconnect} class:connected={$isConnected}>
+
     <button on:click={clone}>
-      Clone
+      clone
     </button>
     <button on:click={copyShareLink}>
-      Share
+      share
+    </button>
+    <button class="disconnect" on:click={disconnect}>
+      disconnect
     </button>
     <Settings />
   </form>
 {:else}
-  <form class="room-selector" on:submit={connect}>
+  <form class="room-selector" on:submit={connect} class:connected={$isConnected}>
     <input
       type="text"
       bind:value={$roomID}
       placeholder="room ID (optional)"
       />
-    <button on:click={connect}>
-      Connect
+    <button on:click={connect} class="connect">
+      {#if $roomID}
+        connect to room "{$roomID}"
+      {:else}
+        <span class="desktop">connect to a</span> random room
+      {/if}
     </button>
     <Settings />
   </form>
 {/if}
-
 
 <!-- STYLES -->
 <style lang="scss">
@@ -69,7 +73,8 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: stretch;
-    gap: 0.5rem;
+    column-gap: 0.5rem;
+    row-gap: 0.2rem;
     font-size: 2rem;
 
     & > * {
@@ -86,9 +91,9 @@
     font-size: 0.6em;
     flex: 1;
 
-    @media (max-width: 25rem) {
-      flex: 1 100%;
-      width: 100%;
+    @media (max-width: 35rem) {
+      // flex: 1 100%;
+      // width: 100%;
     }
 
     &::placeholder {
@@ -102,26 +107,50 @@
 
   button {
     height: 100%;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     border: none;
     border-radius: var(--border-radius);
     background-color: var(--accent-color);
     color: white;
     font-size: 0.6em;
     flex: 0;
+    white-space: nowrap;
 
-    @media (max-width: 25rem) {
+    @media (max-width: 35rem) {
+      flex: 1 100%;
+      order: 1;
+    }
+  }
+
+  .connected button:not(.disconnect) {
+    @media (max-width: 35rem) {
       flex: 1;
+      order: -1;
+    }
+  }
+
+  button.connect {
+    @media (max-width: 35rem) {
+      flex: 1 100%;
     }
   }
 
   button.disconnect {
     background-color: var(--foreground-25);
-    flex: 1;
+    flex: 8;
 
-    @media (max-width: 25rem) {
-      flex: 1 100%;
-      width: 100%;
+    @media (max-width: 35rem) {
+      // order: -1;
+      flex: 1 75%;
+      // flex: 1 100%;
+      // width: 100%;
+    }
+
+    @media (max-width: 15rem) {
+      flex: 1;
+      padding: 0;
+      // flex: 1 100%;
+      // width: 100%;
     }
   }
 </style>
